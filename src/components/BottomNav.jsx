@@ -1,40 +1,28 @@
-import * as React from "react";
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import FolderIcon from "@mui/icons-material/Folder";
-import RestoreIcon from "@mui/icons-material/Restore";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-
-export default function LabelBottomNavigation() {
-  const [value, setValue] = React.useState("recents");
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
+import React from "react";
+import {
+  UilEstate,
+  UilSearch,
+  UilFolderOpen,
+  UilUser,
+} from "@iconscout/react-unicons";
+import { Link } from "react-router-dom";
+function BottomNav() {
   return (
-    <BottomNavigation value={value} onChange={handleChange}>
-      <BottomNavigationAction
-        label="Recents"
-        value="recents"
-        icon={<RestoreIcon />}
-      />
-      <BottomNavigationAction
-        label="Favorites"
-        value="favorites"
-        icon={<FavoriteIcon />}
-      />
-      <BottomNavigationAction
-        label="Nearby"
-        value="nearby"
-        icon={<LocationOnIcon />}
-      />
-      <BottomNavigationAction
-        label="Folder"
-        value="folder"
-        icon={<FolderIcon />}
-      />
-    </BottomNavigation>
+    <div className="w-full p-3   flex bottom-0 justify-around items-center text-white absolute">
+      <Link to={"/"}>
+        <UilEstate />
+      </Link>
+      <Link>
+        <UilSearch />
+      </Link>
+      <Link>
+        <UilFolderOpen />
+      </Link>
+      <Link>
+        <UilUser />
+      </Link>
+    </div>
   );
 }
+
+export default BottomNav;

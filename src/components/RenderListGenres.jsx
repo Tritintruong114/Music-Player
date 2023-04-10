@@ -11,11 +11,11 @@ export function Button() {
   );
 }
 
-export function InfoCard({ url, songTilte, songAuthor }) {
+export function InfoCard({ url, songTilte, songAuthor, songPath }) {
   return (
     <div className="w-2/4 h-2/4 bg-black-50 bg-opacity-20 relative shadow-black-50  rounded-xl  flex flex-col">
       <img className="rounded-xl h-3/4 p-1" src={url} alt="#"></img>
-      <Link to={"play/FreshEyes"}>
+      <Link to={`play/${songPath}`}>
         <UilPlay className="absolute bottom-1/3 left-1 text-black-50 bg-black-300 rounded bg-opacity-40" />
       </Link>
       <p className="text-black-50 text-md pl-2">{songTilte}...</p>{" "}

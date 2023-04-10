@@ -12,6 +12,7 @@ export const defaultValues = {
       name: "Fresh Eyes",
       file: Track1,
       author: "Andy Grammer",
+      songPath: "FreshEyes",
     },
     {
       name: "Young & Dumb & Broke",
@@ -21,6 +22,7 @@ export const defaultValues = {
       name: "Comethru",
       file: Track3,
       author: "Jeremy Zucker",
+      songPath: "Comethru",
     },
   ],
   currentTrackIndex: null,

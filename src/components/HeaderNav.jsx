@@ -34,7 +34,7 @@ function HeaderNav() {
           </h1>
           <h1 className="text-sm text-black-50">Welcome back Bruno !</h1>
         </div>
-        <div className="bg-black-50 relative p-1 rounded-xl">
+        <div className=" relative p-1 rounded-xl">
           <UilBell />
           <p className="absolute text-xl top-3 right-0 font-bold text-porsche-700">
             •
