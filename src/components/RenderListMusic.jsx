@@ -1,23 +1,21 @@
 import React from "react";
 import { InfoCard } from "./RenderListGenres";
 import { Link } from "react-router-dom";
+import { defaultValues } from "../contexts/MusicPlayerContext";
 
 function RenderListMusic() {
   return (
-    <div className="w-full  gap-3 p-3  flex overflow-x-scroll">
-      <InfoCard
-        songPath={"FreshEyes"}
-        songAuthor={"Andy Grammer"}
-        songTilte={"Fresh eyes"}
-        url={`https://i.ytimg.com/vi/PM7eSKeS9nY/maxresdefault.jpg`}
-      />
-
-      <InfoCard
-        songPath={"Comethru"}
-        songAuthor={"Jeremy Zucker"}
-        songTilte={"Comethru"}
-        url={`https://i.ytimg.com/vi/wDchbFDUMe0/maxresdefault.jpg`}
-      />
+    <div className="w-full">
+      <div className="flex overflow-x-scroll ">
+        {defaultValues.map((song) => (
+          <InfoCard
+            songPath={song.songPath}
+            songAuthor={song.author}
+            songTilte={song.name}
+            url={song.image}
+          />
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { TopScreenNav } from "../components/HeaderNav";
-import { defaultValues } from "../contexts/MusicPlayerContext";
 import {
   UilPlayCircle,
   UilPrevious,
@@ -11,18 +10,61 @@ import {
   UilBell,
   UilHeart,
 } from "@iconscout/react-unicons";
-export function PlaySection() {
+import { MusicPlayerContext } from "../contexts/MusicPlayerContext";
+
+export function PlaySection({ index }) {
+  const { state, setState } = useContext(MusicPlayerContext);
+  const [songIsPlaying, setSongIsPlaying] = useState(false);
+  const [currentSong] = useState("");
+  const audioPlayer = useRef();
+
+  const playThisSong = (index) => {
+    setSongIsPlaying((prev) => !prev);
+    console.log(songIsPlaying);
+    //play this song
+    state.audioPlayer = new Audio(state.tracks[index].file);
+    state.audioPlayer.play();
+  };
+
+  const pauseThisSong = () => {
+    setSongIsPlaying((prev) => !prev);
+    console.log(songIsPlaying);
+    state.audioPlayer.pause();
+    //pause this song
+  };
+  const playNextTrack = () => {
+    setSongIsPlaying(true);
+    console.log("ABC");
+  };
+  const playPrevTrack = () => {
+    setSongIsPlaying(true);
+    console.log("AA");
+  };
   return (
     <div className="flex items-center justify-center gap-3">
-      <UilStepBackward />
+      <audio ref={audioPlayer} />
+      <UilStepBackward className="cursor-pointer" onClick={playPrevTrack} />
       <UilPrevious />
-      <UilPlayCircle className="w-fit h-16" />
+      {!songIsPlaying ? (
+        <UilPlayCircle
+          className="w-fit h-16 cursor-pointer"
+          onClick={() => playThisSong(1)}
+        />
+      ) : (
+        <UilPauseCircle
+          className="w-fit h-16 cursor-pointer"
+          onClick={pauseThisSong}
+        />
+      )}
       <UilStepForward />
-      <UilSkipForward />
+      <UilSkipForward className="cursor-pointer" onClick={playNextTrack} />
     </div>
   );
 }
+
 export function SongPlayingCard({ author, songTitle, url }) {
+  const { state, setState } = useContext(MusicPlayerContext);
+
   return (
     <div className="text-white h-full ">
       <TopScreenNav />
@@ -43,8 +85,9 @@ export function SongPlayingCard({ author, songTitle, url }) {
           <p className="opacity-40 italic ">Comming soon</p>
         </div>
       </div>
+
       <div>
-        <PlaySection />
+        <PlaySection index={state.currentSongId} />
       </div>
     </div>
   );

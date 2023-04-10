@@ -20,7 +20,8 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.10.0",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "use-sound": "^4.0.1"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",

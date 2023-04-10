@@ -1,22 +1,24 @@
-import React from "react";
+import React, { useContext, createContext } from "react";
 import { faker } from "@faker-js/faker";
 import { UilPlay } from "@iconscout/react-unicons";
 import { Link } from "react-router-dom";
+import { MusicPlayerContext } from "../contexts/MusicPlayerContext";
 
 export function Button() {
   return (
-    <button className="text-black-50 text-xs w-full bg-porsche-500 px-3 py-1 rounded-full cursor-pointer active:text-porsche-500 active:bg-black-900">
+    <button className="text-black-50 text-xs bg-porsche-500 px-3 py-1 rounded-full cursor-pointer active:text-porsche-500 active:bg-black-900">
       {faker.music.genre().slice(0, 4)}
     </button>
   );
 }
 
 export function InfoCard({ url, songTilte, songAuthor, songPath }) {
+  const { state, setState } = useContext(MusicPlayerContext);
   return (
-    <div className="w-2/4 h-2/4 bg-black-50 bg-opacity-20 relative shadow-black-50  rounded-xl  flex flex-col">
-      <img className="rounded-xl h-3/4 p-1" src={url} alt="#"></img>
+    <div className="w-40 bg-black-50 bg-opacity-20 relative shadow-black-50  rounded-xl  flex flex-col">
+      <img className="rounded-xl object-cover" src={url} alt="#"></img>
       <Link to={`play/${songPath}`}>
-        <UilPlay className="absolute bottom-1/3 left-1 text-black-50 bg-black-300 rounded bg-opacity-40" />
+        <UilPlay className="absolute cursor-pointer bottom-1/3 left-1 text-black-50 bg-black-300 rounded bg-opacity-40" />
       </Link>
       <p className="text-black-50 text-md pl-2">{songTilte}...</p>{" "}
       <p className="text-black-50 text-xs text-opacity-60 pl-2">
@@ -27,13 +29,34 @@ export function InfoCard({ url, songTilte, songAuthor, songPath }) {
 }
 
 function RenderListGenres() {
+  const { state, setState } = useContext(MusicPlayerContext);
   return (
-    <div className="w-full px-3 flex justify-between overflow-x-scroll gap-3">
-      <Button />
-      <Button />
-      <Button />
-      <Button />
-      <Button />
+    <div className="gap-3 flex flex-col">
+      <div className="flex scroll  h-full overflow-auto gap-3">
+        <Button />
+        <Button />
+        <Button />
+        <Button />
+        <Button />
+        <Button />
+        <Button />
+        <Button />
+        <Button />
+        <Button />
+      </div>
+
+      <div className="flex scroll h-full overflow-auto gap-3">
+        {state.tracks.map((song) => (
+          <div className="">
+            <InfoCard
+              songPath={song.songPath}
+              songAuthor={song.author}
+              songTilte={song.name}
+              url={song.image}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
