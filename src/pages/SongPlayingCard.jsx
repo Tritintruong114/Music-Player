@@ -15,54 +15,67 @@ import { MusicPlayerContext } from "../contexts/MusicPlayerContext";
 export function PlaySection({ index }) {
   const { state, setState } = useContext(MusicPlayerContext);
   const [songIsPlaying, setSongIsPlaying] = useState(false);
-  const [currentSong] = useState("");
-  const audioPlayer = useRef();
 
   const playThisSong = (index) => {
     setSongIsPlaying((prev) => !prev);
-    console.log(songIsPlaying);
-    //play this song
+    state.currenTrackId = index;
+    console.log(state.currenTrackId, " This is Testing");
     state.audioPlayer = new Audio(state.tracks[index].file);
     state.audioPlayer.play();
+    setState({ ...state, currenTrackId: index });
   };
 
-  const pauseThisSong = () => {
-    setSongIsPlaying((prev) => !prev);
-    console.log(songIsPlaying);
+  const pauseThisSong = (index) => {
     state.audioPlayer.pause();
-    //pause this song
+    setSongIsPlaying((prev) => !prev);
+    console.log("PAUSE", index);
   };
-  const playNextTrack = () => {
+  const playNextTrack = (index) => {
+    state.audioPlayer.pause();
     setSongIsPlaying(true);
-    console.log("ABC");
+    const newId = (state.currenTrackId + 1) % state.tracks.length;
+    state.audioPlayer = new Audio(state.tracks[newId].file);
+    state.currenTrackId = newId;
+    state.audioPlayer.play();
+    console.log("NEXT", newId);
   };
-  const playPrevTrack = () => {
+
+  const playPrevTrack = (index) => {
+    state.audioPlayer.pause();
     setSongIsPlaying(true);
-    console.log("AA");
+    const newId = (state.currenTrackId - 1) % state.tracks.length;
+    state.audioPlayer = new Audio(state.tracks[newId].file);
+    state.currenTrackId = newId;
+    state.audioPlayer.play();
   };
   return (
     <div className="flex items-center justify-center gap-3">
-      <audio ref={audioPlayer} />
-      <UilStepBackward className="cursor-pointer" onClick={playPrevTrack} />
+      <UilStepBackward
+        className="cursor-pointer"
+        onClick={() => playPrevTrack(index)}
+      />
       <UilPrevious />
       {!songIsPlaying ? (
         <UilPlayCircle
           className="w-fit h-16 cursor-pointer"
-          onClick={() => playThisSong(1)}
+          onClick={() => playThisSong(index)}
         />
       ) : (
         <UilPauseCircle
           className="w-fit h-16 cursor-pointer"
-          onClick={pauseThisSong}
+          onClick={() => pauseThisSong(index)}
         />
       )}
       <UilStepForward />
-      <UilSkipForward className="cursor-pointer" onClick={playNextTrack} />
+      <UilSkipForward
+        className="cursor-pointer"
+        onClick={() => playNextTrack(index)}
+      />
     </div>
   );
 }
 
-export function SongPlayingCard({ author, songTitle, url }) {
+export function SongPlayingCard({ author, songTitle, url, index }) {
   const { state, setState } = useContext(MusicPlayerContext);
 
   return (
@@ -85,9 +98,8 @@ export function SongPlayingCard({ author, songTitle, url }) {
           <p className="opacity-40 italic ">Comming soon</p>
         </div>
       </div>
-
       <div>
-        <PlaySection index={state.currentSongId} />
+        <PlaySection index={index} />
       </div>
     </div>
   );

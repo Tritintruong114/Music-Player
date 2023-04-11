@@ -5,7 +5,7 @@ import RenderListGenres from "./components/RenderListGenres";
 import RenderListMusic from "./components/RenderListMusic";
 import BottomNav from "./components/BottomNav";
 import { MusicPlayerProvider } from "./contexts/MusicPlayerContext";
-
+import { PlaySection } from "./pages/SongPlayingCard";
 function App() {
   return (
     <MusicPlayerProvider>
