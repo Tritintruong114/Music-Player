@@ -10,7 +10,8 @@ const MusicPlayerContext = React.createContext();
 
 export const defaultValues = {
   audioPlayer: new Audio(),
-  currentTrackId: null,
+  currentTrackId: 0,
+  //Thiss iss the problem , we need to pass the valua from the main.jsx when click
   index: null,
   tracks: [
     {

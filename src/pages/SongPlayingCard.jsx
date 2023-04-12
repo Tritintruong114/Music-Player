@@ -16,61 +16,67 @@ import { Link, Outlet } from "react-router-dom";
 export function PlaySection({ index }) {
   const { state, setState } = useContext(MusicPlayerContext);
   const [songIsPlaying, setSongIsPlaying] = useState(false);
-  let newIndex = index;
+  // let newIndex = index;
 
   const playThisSong = (newIndex) => {
     //the first click will show undefined because the stat.currentract is null. If we set index to the console. will be print correct number index
     //This function is play the index number being passing to throught Props
     //this is logout the prev id of the list if passing index, will log out the core index be passing in through props.
-    state.audioPlayer.pause(state.currenTrackId);
+    state.audioPlayer.pause(state.currentTrackId);
     setSongIsPlaying((prev) => !prev);
     state.audioPlayer = new Audio(state.tracks[newIndex].file);
     state.audioPlayer.play();
-    setState({ ...state, currenTrackId: newIndex });
+    setState({ ...state, currentTrackId: newIndex });
     console.log("Play", state.tracks[newIndex].name);
   };
 
-  const play = () => {
+  const play = (index) => {
+    console.log(index, "from play function");
     state.audioPlayer.pause(); //pause
     setSongIsPlaying((prev) => !prev);
-    state.audioPlayer = new Audio(state.tracks[newIndex].file);
+    state.audioPlayer = new Audio(state.tracks[index].file);
     state.audioPlayer.play();
   };
 
-  const pauseThisSong = () => {
+  const pauseThisSong = (index) => {
     state.audioPlayer.pause(); //pause
     setSongIsPlaying((prev) => !prev); //set for the UI return to Play ready to click
-    console.log(state.currenTrackId, "PAUSE");
+    console.log(state.currentTrackId, "PAUSE");
   };
 
-  const playNextTrack = () => {
-    state.audioPlayer.pause(state.currenTrackId);
+  const playNextTrack = (index) => {
+    state.audioPlayer.pause(state.currentTrackId);
     setSongIsPlaying(false);
-    newIndex = (state.currenTrackId + 1) % state.tracks.length;
-    console.log(newIndex, "NEXT");
-    playThisSong(newIndex);
-    setState({ ...state, currenTrackId: newIndex });
+    index = (state.currentTrackId + 1) % state.tracks.length;
+    console.log(index, "NEXT");
+    playThisSong(index);
+    setState({ ...state, currentTrackId: index });
     //need to change the core index when passing in
   };
 
   const playPrevTrack = () => {
-    state.audioPlayer.pause(state.currenTrackId);
+    state.audioPlayer.pause(state.currentTrackId);
     setSongIsPlaying(false);
     const newId =
-      (((state.currenTrackId + -1) % state.tracks.length) +
+      (((state.currentTrackId + -1) % state.tracks.length) +
         state.tracks.length) %
       state.tracks.length;
-    console.log(newId, "Prev");
-    setState({ ...state, currenTrackId: newId });
+    console.log(index, "Prev");
+    setState({ ...state, currentTrackId: newId });
     playThisSong(newId);
   };
 
   return (
     <div className="flex items-center justify-center gap-3">
-      <UilStepBackward className="cursor-pointer" onClick={playPrevTrack} />
+      <Link to={`${state.tracks[state.currentTrackId].songPath}`}>
+        <UilStepBackward className="cursor-pointer" onClick={playPrevTrack} />
+      </Link>
       <UilPrevious />
       {!songIsPlaying ? (
-        <UilPlayCircle className="w-fit h-16 cursor-pointer" onClick={play} />
+        <UilPlayCircle
+          className="w-fit h-16 cursor-pointer"
+          onClick={() => play(index)}
+        />
       ) : (
         <UilPauseCircle
           className="w-fit h-16 cursor-pointer"
@@ -78,8 +84,11 @@ export function PlaySection({ index }) {
         />
       )}
       <UilStepForward />
-      <Link to={`play`}>
-        <UilSkipForward className="cursor-pointer" onClick={playNextTrack} />
+      <Link to={`${state.tracks[state.currentTrackId].songPath}`}>
+        <UilSkipForward
+          className="cursor-pointer"
+          onClick={() => playNextTrack(index)}
+        />
       </Link>
     </div>
   );
@@ -88,6 +97,7 @@ export function PlaySection({ index }) {
 export function SongPlayingCard({ index }) {
   const { state, setState } = useContext(MusicPlayerContext);
   //This is the problem
+  console.log(state.tracks[index].name, index, "THIS FROM SONGPLAYINGCARD");
 
   return (
     <>
@@ -111,10 +121,6 @@ export function SongPlayingCard({ index }) {
           <p className="font-bold">Lyrics</p>
           <p className="opacity-40 italic ">Comming soon</p>
         </div>
-      </div>
-
-      <div>
-        <PlaySection index={state.currenTrackId} />
       </div>
     </>
   );

@@ -47,7 +47,7 @@ function RenderListGenres() {
 
       <div className="flex scroll h-full overflow-auto gap-3">
         {state.tracks.map((song) => (
-          <div className="">
+          <div key={song.id} className="">
             <InfoCard
               songPath={song.songPath}
               songAuthor={song.author}
