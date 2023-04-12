@@ -45,13 +45,14 @@ export function PlaySection({ index }) {
     console.log(state.currentTrackId, "PAUSE");
   };
 
-  const playNextTrack = (index) => {
+  const playNextTrack = (newIndex) => {
     state.audioPlayer.pause(state.currentTrackId);
+    setState({ ...state, currentTrackId: newIndex });
     setSongIsPlaying(false);
-    index = (state.currentTrackId + 1) % state.tracks.length;
-    console.log(index, "NEXT");
-    playThisSong(index);
-    setState({ ...state, currentTrackId: index });
+    newIndex = (state.currentTrackId + 1) % state.tracks.length;
+    console.log(newIndex, "NEXT");
+    playThisSong(newIndex);
+    setState({ ...state, currentTrackId: newIndex });
     //need to change the core index when passing in
   };
 
@@ -69,7 +70,15 @@ export function PlaySection({ index }) {
 
   return (
     <div className="flex items-center justify-center gap-3">
-      <Link to={`${state.tracks[state.currentTrackId].songPath}`}>
+      <Link
+        to={`${
+          state.tracks[
+            (((state.currentTrackId + -1) % state.tracks.length) +
+              state.tracks.length) %
+              state.tracks.length
+          ].songPath
+        }`}
+      >
         <UilStepBackward className="cursor-pointer" onClick={playPrevTrack} />
       </Link>
       <UilPrevious />
@@ -85,7 +94,12 @@ export function PlaySection({ index }) {
         />
       )}
       <UilStepForward />
-      <Link to={`${state.tracks[state.currentTrackId].songPath}`}>
+      <Link
+        to={`${
+          state.tracks[(state.currentTrackId + 1) % state.tracks.length]
+            .songPath
+        }`}
+      >
         <UilSkipForward
           className="cursor-pointer"
           onClick={() => playNextTrack(index)}
@@ -98,7 +112,12 @@ export function PlaySection({ index }) {
 export function SongPlayingCard({ index }) {
   const { state, setState } = useContext(MusicPlayerContext);
   //This is the problem
-  console.log(state.currentTrackId, index, "THIS FROM SONGPLAYINGCARD");
+  console.log(
+    state.currentTrackId,
+    index,
+    state.tracks[state.currentTrackId].songPath,
+    "THIS FROM SONGPLAYINGCARD"
+  );
 
   return (
     <>
