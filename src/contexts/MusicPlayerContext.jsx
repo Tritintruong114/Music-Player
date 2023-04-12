@@ -11,6 +11,7 @@ const MusicPlayerContext = React.createContext();
 export const defaultValues = {
   audioPlayer: new Audio(),
   currentTrackId: null,
+  index: null,
   tracks: [
     {
       id: 3,

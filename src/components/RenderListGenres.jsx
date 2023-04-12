@@ -16,8 +16,8 @@ export function InfoCard({ url, songTilte, songAuthor, songPath }) {
   const { state, setState } = useContext(MusicPlayerContext);
   return (
     <div className="w-40 bg-black-50 bg-opacity-20 relative shadow-black-50  rounded-xl  flex flex-col">
-      <img className="rounded-xl object-cover" src={url} alt="#"></img>
       <Link to={`play/${songPath}`}>
+        <img className="rounded-xl object-cover" src={url} alt="#"></img>
         <UilPlay className="absolute cursor-pointer bottom-1/3 left-1 text-black-50 bg-black-300 rounded bg-opacity-40" />
       </Link>
       <p className="text-black-50 text-md pl-2">{songTilte}...</p>{" "}
