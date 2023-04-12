@@ -10,8 +10,9 @@ const MusicPlayerContext = React.createContext();
 
 export const defaultValues = {
   audioPlayer: new Audio(),
-  currentTrackId: 0,
+  currentTrackId: 3,
   //Thiss iss the problem , we need to pass the valua from the main.jsx when click
+  //This currentTrack is null , so the UI wont be rendering, we have make a number = tracks.length
   index: null,
   tracks: [
     {
