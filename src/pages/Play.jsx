@@ -14,7 +14,7 @@ function Play() {
       }}
       className="text-white rounded-xl h-full"
     >
-      <div className="text-white h-full backdrop-filter backdrop-blur-xl rounded-xl">
+      <div className="text-white h-fit backdrop-filter backdrop-blur-xl rounded-xl">
         <Outlet />
         <PlaySection index={state.currentTrackId} />
       </div>

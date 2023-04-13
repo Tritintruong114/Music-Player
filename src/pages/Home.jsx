@@ -12,7 +12,7 @@ function Home() {
         <br />
         Not thing done in this page, just have take a look.
       </h1>
-      <div className="h-5/6 md:h-3/4 xl:h-3/4 relative w-3/4 md:w-1/4 xl:w-1/4 bg-black-950 rounded-3xl p-2 flex flex-col items-center">
+      <div className="h-5/6 md:h-fit xl:h-fit relative w-3/4 md:w-1/4 xl:w-1/4 bg-black-950 rounded-3xl p-2 flex flex-col items-center">
         <div className="text-white w-full  backdrop-filter backdrop-blur-3xl">
           <HeaderNav />
           <RenderListGenres />

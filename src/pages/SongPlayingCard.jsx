@@ -13,6 +13,7 @@ import {
 } from "@iconscout/react-unicons";
 import { MusicPlayerContext } from "../contexts/MusicPlayerContext";
 import { Link, Outlet } from "react-router-dom";
+import BottomNav from "../components/BottomNav";
 
 export function PlaySection({ index }) {
   const { state, setState } = useContext(MusicPlayerContext);
@@ -70,42 +71,47 @@ export function PlaySection({ index }) {
   };
 
   return (
-    <div className="flex items-center md:p-3 justify-center gap-3">
-      <Link
-        to={`${
-          state.tracks[
-            (((state.currentTrackId + -1) % state.tracks.length) +
-              state.tracks.length) %
-              state.tracks.length
-          ].songPath
-        }`}
-      >
-        <UilStepBackward className="cursor-pointer" onClick={playPrevTrack} />
-      </Link>
-      <UilPrevious />
-      {!songIsPlaying ? (
-        <UilPlay
-          className="w-fit h-16 cursor-pointer font-light"
-          onClick={() => play(index)}
-        />
-      ) : (
-        <UilPauseCircle
-          className="w-fit h-16 cursor-pointer"
-          onClick={() => pauseThisSong(index)}
-        />
-      )}
-      <UilStepForward />
-      <Link
-        to={`${
-          state.tracks[(state.currentTrackId + 1) % state.tracks.length]
-            .songPath
-        }`}
-      >
-        <UilSkipForward
-          className="cursor-pointer"
-          onClick={() => playNextTrack(index)}
-        />
-      </Link>
+    <div className="flex flex-col items-center md:p-3 justify-center gap-3">
+      <div className="flex items-center justify-center gap-3 ">
+        <Link
+          to={`${
+            state.tracks[
+              (((state.currentTrackId + -1) % state.tracks.length) +
+                state.tracks.length) %
+                state.tracks.length
+            ].songPath
+          }`}
+        >
+          <UilStepBackward className="cursor-pointer" onClick={playPrevTrack} />
+        </Link>
+        <UilPrevious />
+        {!songIsPlaying ? (
+          <UilPlay
+            className="w-fit h-16 cursor-pointer font-light"
+            onClick={() => play(index)}
+          />
+        ) : (
+          <UilPauseCircle
+            className="w-fit h-16 cursor-pointer"
+            onClick={() => pauseThisSong(index)}
+          />
+        )}
+        <UilStepForward />
+        <Link
+          to={`${
+            state.tracks[(state.currentTrackId + 1) % state.tracks.length]
+              .songPath
+          }`}
+        >
+          <UilSkipForward
+            className="cursor-pointer"
+            onClick={() => playNextTrack(index)}
+          />
+        </Link>
+      </div>
+      <div className="w-3/4 pb-3">
+        <BottomNav />
+      </div>
     </div>
   );
 }
