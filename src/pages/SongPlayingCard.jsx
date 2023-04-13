@@ -82,17 +82,20 @@ export function PlaySection({ index }) {
             ].songPath
           }`}
         >
-          <UilStepBackward className="cursor-pointer" onClick={playPrevTrack} />
+          <UilStepBackward
+            className="cursor-pointer h-5"
+            onClick={playPrevTrack}
+          />
         </Link>
         <UilPrevious />
         {!songIsPlaying ? (
           <UilPlay
-            className="w-fit h-16 cursor-pointer font-light"
+            className="w-fit h-9 cursor-pointer font-light"
             onClick={() => play(index)}
           />
         ) : (
           <UilPauseCircle
-            className="w-fit h-16 cursor-pointer"
+            className="w-fit h-9 cursor-pointer"
             onClick={() => pauseThisSong(index)}
           />
         )}
@@ -104,12 +107,12 @@ export function PlaySection({ index }) {
           }`}
         >
           <UilSkipForward
-            className="cursor-pointer"
+            className="cursor-pointer h-5"
             onClick={() => playNextTrack(index)}
           />
         </Link>
       </div>
-      <div className="w-3/4 pb-3">
+      <div className="w-3/4 ">
         <BottomNav />
       </div>
     </div>
@@ -148,9 +151,9 @@ export function SongPlayingCard({ index }) {
             {state.tracks[state.currentTrackId].author}
           </p>
         </div>
-        <div className="h-2/5 w-4/5 rounded-xl bg-opacity-40 bg-black-300 flex  flex-col justify-center items-center">
-          <p className="font-bold">Lyrics</p>
-          <p className="opacity-40 italic ">Comming soon</p>
+        <div className="h-fit w-4/5 rounded-xl bg-opacity-40 bg-black-500 flex  flex-col justify-center items-center">
+          <p className="font-bold p-3">Lyrics</p>
+          <p className="opacity-40 italic pb-6   ">Comming soon</p>
         </div>
       </div>
     </>
