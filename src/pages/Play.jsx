@@ -12,7 +12,7 @@ function Play() {
       style={{
         backgroundImage: `url(${state.tracks[state.currentTrackId].image})`,
       }}
-      className="text-white rounded-xl h-full"
+      className="text-white rounded-xl object-fill h-full"
     >
       <div className="text-white h-fit backdrop-filter backdrop-blur-xl rounded-xl">
         <Outlet />
