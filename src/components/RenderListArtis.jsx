@@ -16,9 +16,9 @@ export function Avatar() {
 }
 function RenderListArtis() {
   return (
-    <div className="p-3 h-2/4 w-full">
+    <div className="p-3 flex flex-col justify-center  h-full w-full">
       <div>
-        <h1 className="text-black-50 font-Poppin">Artis</h1>
+        <h1 className="text-black-50 font-Poppin ">Artis</h1>
       </div>
       <div className="overflow-x-scroll w-full h-full flex gap-3 ">
         <Avatar />

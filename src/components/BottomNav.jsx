@@ -1,25 +1,23 @@
 import React from "react";
 import {
-  UilEstate,
+  UilTriangle,
   UilSearch,
-  UilFolderOpen,
+  UilSquareShape,
   UilUser,
+  UilCircle,
 } from "@iconscout/react-unicons";
 import { Link } from "react-router-dom";
 function BottomNav() {
   return (
-    <div className="w-full p-3   flex bottom-0 justify-around items-center text-white absolute">
-      <Link to={"/"}>
-        <UilEstate />
+    <div className="w-full p-2 flex bottom-0 justify-around items-center text-white absolute">
+      <Link to={"/workingOn"} className="">
+        <UilTriangle />
       </Link>
-      <Link>
-        <UilSearch />
+      <Link to={"/workingOn"}>
+        <UilCircle />
       </Link>
-      <Link>
-        <UilFolderOpen />
-      </Link>
-      <Link>
-        <UilUser />
+      <Link to={"/workingOn"}>
+        <UilSquareShape />
       </Link>
     </div>
   );

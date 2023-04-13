@@ -8,9 +8,16 @@ function Play() {
   console.log(state.currentTrackId, "FROM Play component");
 
   return (
-    <div className="text-white h-full">
-      <Outlet />
-      <PlaySection index={state.currentTrackId} />
+    <div
+      style={{
+        backgroundImage: `url(${state.tracks[state.currentTrackId].image})`,
+      }}
+      className="text-white rounded-xl h-full"
+    >
+      <div className="text-white h-full backdrop-filter backdrop-blur-xl rounded-xl">
+        <Outlet />
+        <PlaySection index={state.currentTrackId} />
+      </div>
     </div>
   );
 }

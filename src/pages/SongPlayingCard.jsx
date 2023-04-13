@@ -9,6 +9,7 @@ import {
   UilStepBackward,
   UilBell,
   UilHeart,
+  UilPlay,
 } from "@iconscout/react-unicons";
 import { MusicPlayerContext } from "../contexts/MusicPlayerContext";
 import { Link, Outlet } from "react-router-dom";
@@ -69,7 +70,7 @@ export function PlaySection({ index }) {
   };
 
   return (
-    <div className="flex items-center justify-center gap-3">
+    <div className="flex items-center md:p-3 justify-center gap-3">
       <Link
         to={`${
           state.tracks[
@@ -83,8 +84,8 @@ export function PlaySection({ index }) {
       </Link>
       <UilPrevious />
       {!songIsPlaying ? (
-        <UilPlayCircle
-          className="w-fit h-16 cursor-pointer"
+        <UilPlay
+          className="w-fit h-16 cursor-pointer font-light"
           onClick={() => play(index)}
         />
       ) : (
@@ -129,7 +130,7 @@ export function SongPlayingCard({ index }) {
       </div>
       <div className="flex flex-col h-3/4 items-center">
         <img
-          className="object-fit h-2/4 rounded-3xl p-3 "
+          className="object-cover h-2/4 rounded-3xl p-3 "
           src={state.tracks[state.currentTrackId].image}
         ></img>
 
@@ -141,7 +142,7 @@ export function SongPlayingCard({ index }) {
             {state.tracks[state.currentTrackId].author}
           </p>
         </div>
-        <div className="h-2/5 w-4/5 rounded-xl bg-opacity-30 bg-black-200 flex  flex-col justify-center items-center">
+        <div className="h-2/5 w-4/5 rounded-xl bg-opacity-40 bg-black-300 flex  flex-col justify-center items-center">
           <p className="font-bold">Lyrics</p>
           <p className="opacity-40 italic ">Comming soon</p>
         </div>

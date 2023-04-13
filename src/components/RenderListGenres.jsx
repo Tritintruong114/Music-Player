@@ -31,7 +31,7 @@ export function InfoCard({ url, songTilte, songAuthor, songPath }) {
 function RenderListGenres() {
   const { state, setState } = useContext(MusicPlayerContext);
   return (
-    <div className="gap-3 flex flex-col">
+    <div className="gap-3 flex flex-col backdrop-filter backdrop-blur-3xl ">
       <div className="flex scroll  h-full overflow-auto gap-3">
         <Button />
         <Button />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   UilSearch,
   UilBell,
@@ -7,17 +7,29 @@ import {
   UilBatteryBolt,
 } from "@iconscout/react-unicons";
 export function TopScreenNav() {
-  const time = new Date();
-  const currentTime = time.getHours() + ":" + time.getMinutes();
+  // const time = new Date();
+  // const currentTime =
+  //   time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds;
+
+  const [timeString, setTimeString] = useState("");
+
+  useEffect(() => {
+    setInterval(() => {
+      const time = new Date();
+      const currentTime = time.getHours() + ":" + time.getMinutes();
+      setTimeString(currentTime);
+    }, 1000);
+  }, []);
+
   return (
-    <div className="flex w-full justify-between">
+    <div className="flex w-full justify-between backdrop-filter backdrop-blur-3xl pb-3 rounded-xl">
       <div className="text-black-50 px-3">
-        <p className="text-xs">{currentTime}</p>
+        <p className="text-sm">{timeString}</p>
       </div>
       <div className="text-black-50 px-3 flex gap-1 ">
-        <UilSignalAlt size="15" />
-        <UilWifi size="15" />
-        <UilBatteryBolt size="15" />
+        <UilSignalAlt size="18" />
+        <UilWifi size="18" />
+        <UilBatteryBolt size="18" />
       </div>
     </div>
   );

@@ -17,33 +17,30 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "play",
-        element: <Play />,
-        children: [
-          {
-            path: "Fresheyes",
-            element: <SongPlayingCard index={3} />,
-          },
-          {
-            path: "Comethru",
-            element: <SongPlayingCard index={2} />,
-          },
-          {
-            path: "DaVu",
-            element: <SongPlayingCard index={1} />,
-          },
-          {
-            path: "waitingForYou",
-            element: <SongPlayingCard index={0} />,
-          },
-        ],
+        path: "Comethru",
+        element: <SongPlayingCard index={2} />,
       },
-
+      {
+        path: "DaVu",
+        element: <SongPlayingCard index={1} />,
+      },
+      {
+        path: "waitingForYou",
+        element: <SongPlayingCard index={0} />,
+      },
       {
         index: true,
-        element: <Home />,
+        element: <SongPlayingCard index={3} />,
+      },
+      {
+        path: "FreshEyes",
+        element: <SongPlayingCard index={2} />,
       },
     ],
+  },
+  {
+    path: "workingOn",
+    element: <Home />,
   },
 ]);
 
