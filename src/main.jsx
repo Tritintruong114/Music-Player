@@ -9,7 +9,6 @@ import {
   MusicPlayerProvider,
   defaultValues,
 } from "./contexts/MusicPlayerContext";
-import Play from "./pages/Play";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +24,7 @@ const router = createBrowserRouter([
         element: <SongPlayingCard index={1} />,
       },
       {
-        path: "waitingForYou",
+        path: "redbone",
         element: <SongPlayingCard index={0} />,
       },
       {

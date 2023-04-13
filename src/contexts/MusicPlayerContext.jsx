@@ -17,12 +17,12 @@ export const defaultValues = {
   tracks: [
     {
       id: 3,
-      name: "Waiting For You",
+      name: "Redbone ",
       file: Track5,
-      author: "Mono",
-      songPath: "waitingForYou",
+      author: "Joseph Solomon",
+      songPath: "redbone",
       image:
-        "https://i.ytimg.com/vi/CHw1b_1LVBA/hq720.jpg?sqp=-oaymwE2COgCEMoBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARh_ICcoHzAP&rs=AOn4CLACGxnDdM001B77P_22v4lzo_JmZQ",
+        "https://legacydisciple.org/wp-content/uploads/2018/01/Joseph-Solomon-759x500.jpg",
     },
 
     {

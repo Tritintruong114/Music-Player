@@ -151,7 +151,7 @@ export function SongPlayingCard({ index }) {
             {state.tracks[state.currentTrackId].author}
           </p>
         </div>
-        <div className="h-fit w-4/5 rounded-xl bg-opacity-40 bg-black-500 flex  flex-col justify-center items-center">
+        <div className="h-fit  w-4/5 rounded-xl bg-opacity-40 bg-black-500 flex  flex-col justify-center items-center">
           <p className="font-bold p-3">Lyrics</p>
           <p className="opacity-40 italic pb-6   ">Comming soon</p>
         </div>
