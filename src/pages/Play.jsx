@@ -4,7 +4,7 @@ import { PlaySection } from "./SongPlayingCard";
 import { MusicPlayerContext } from "../contexts/MusicPlayerContext";
 
 function Play() {
-  const { state, setState } = useContext(MusicPlayerContext);
+  const { state } = useContext(MusicPlayerContext);
   console.log(state.currentTrackId, "FROM Play component");
 
   return (

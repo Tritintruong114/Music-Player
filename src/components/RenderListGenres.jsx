@@ -13,7 +13,6 @@ export function Button() {
 }
 
 export function InfoCard({ url, songTilte, songAuthor, songPath }) {
-  const { state, setState } = useContext(MusicPlayerContext);
   return (
     <div className="w-40 bg-black-50 bg-opacity-20 relative shadow-black-50  rounded-xl  flex flex-col">
       <Link to={`play/${songPath}`}>

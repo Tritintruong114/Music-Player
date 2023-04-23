@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { TopScreenNav } from "../components/HeaderNav";
 import {
   UilPlayCircle,
@@ -122,12 +122,10 @@ export function PlaySection({ index }) {
 export function SongPlayingCard({ index }) {
   const { state, setState } = useContext(MusicPlayerContext);
   //This is the problem
-  console.log(
-    state.currentTrackId,
-    index,
-    state.tracks[state.currentTrackId].songPath,
-    "THIS FROM SONGPLAYINGCARD"
-  );
+
+  useEffect(() => {
+    setState({ ...state, currentTrackId: index });
+  }, []);
 
   return (
     <>
