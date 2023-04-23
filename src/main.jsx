@@ -55,6 +55,6 @@ function Wrapper() {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <Wrapper />
   </React.StrictMode>
 );
