@@ -1,4 +1,10 @@
-https://master--voluble-otter-f2f9c8.netlify.app/
+Hello guys, 
 
+This is a small app that im tried to build like the real phone application, and it was for the practiced of using useContext
+In this project i used
 
-This is the Demo APP link.
+ReactJS TailwindCSS ViteJS
+
+Feel free to use the source code, and the Demo link is beside.
+
+Thank you !
